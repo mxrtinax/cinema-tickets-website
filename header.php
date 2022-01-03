@@ -1,5 +1,5 @@
 <?php
-  session_start();
+  //session_start();
  ?>
 
 <!DOCTYPE html>
@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="css/stil.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title></title>
 
 
@@ -20,8 +21,11 @@
       <a href="browse.php" class="w3-bar-item w3-button"><h1 class="w3-text-red" style="text-shadow:1px 1px 0 #444"><b>Filme</b></h1></a>
       <?php
         if (isset($_SESSION["email"])) {
-          echo '<a href="user.php" class="w3-bar-item w3-button w3-right"><h1 class="w3-text-yellow" style="text-shadow:1px 1px 0 #444; margin-right:20px"><b>Users</b></h1></a>';
-
+          echo '<a href="includes/logout.inc.php" class="w3-bar-item w3-button w3-right"><h1 class="w3-text-yellow" style="text-shadow:1px 1px 0 #444; margin-right:20px"><b>Log out</b></h1></a>';
+          echo '<a href="user.php" class="w3-bar-item w3-button w3-right"><h1 class="w3-text-yellow" style="text-shadow:1px 1px 0 #444; margin-right:20px"><b>User</b></h1></a>';
+          if($_SESSION["isAdmin"] == '1')
+          {echo '<a href="admin.php" class="w3-bar-item w3-button w3-right"><h1 class="w3-text-yellow" style="text-shadow:1px 1px 0 #444; margin-right:20px"><b>Admin tools</b></h1></a>';
+          }
         }
        ?>
 
