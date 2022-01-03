@@ -1,8 +1,8 @@
 <?php
 
-if (isset($_POST["submit"])) {
-  $email = $_POST["email"];
-  $parola = $_POST["pwd"];
+if (isset($_POST["getBilet"])) {
+  //$email = $_POST["email"];
+  //$parola = $_POST["pwd"];
 
   require_once 'dbh.inc.php';
   require_once 'functions.inc.php';
@@ -10,6 +10,7 @@ if (isset($_POST["submit"])) {
     header("location: ../login.php?error=emptyinput");
     exit();
   }
+
   loginUser($conn, $email,$parola);
 }
 else {
