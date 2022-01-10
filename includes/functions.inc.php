@@ -175,3 +175,48 @@ function loginUser($conn, $email,$parola)
       exit();
   }
 }
+function specialChars($nume, $prenume,$email){
+  if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $nume) || preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $prenume) || preg_match('/[\'^£$%&*()}{#~?><>,|=_+¬-]/', $email))
+{
+    return true;
+}
+return false;
+}
+function pwdStrong($parola){
+  $number = preg_match('@[0-9]@', $parola);
+  $uppercase = preg_match('@[A-Z]@', $parola);
+  $lowercase = preg_match('@[a-z]@', $parola);
+  $specialChars = preg_match('@[^\w]@', $parola);
+
+  if(strlen($parola) < 8 || !$number || !$uppercase || !$lowercase || !$specialChars) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function generareQR($conn, $id_user,$id_rezervare,$id_proiectie,$l1,$l2,$l3,$l4){
+  $sql = "select * from users where id_user = ".$id_user.";";
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
+  $nume = $row["nume"];
+  $prenume = $row["prenume"];
+  $sql = "select data, ora, id_sala from proiectie where id_proiectie = ".$id_proiectie.";";
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
+  $data = $row["data"];
+  $ora = $row["ora"];
+  $id_sala = $row["id_sala"];
+  $sql = "select nume from sala where id_sala = '".$id_sala."';";
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
+  $nume_sala = $row["nume"];
+  //if ($l1!='null'){
+  //$l1 = explode('.',$l1);}
+  //$l2 = explode('.',$l2);
+  //$l3 = explode('.',$l3);
+  //$l4 = explode('.',$l4);
+  header('location: ../includes/phpqrcode/index.php?data='.$nume.' '.$prenume.' '.$data.' '.$ora.' '.$nume_sala.' '.$l1.' '.$l2.' '.$l3.' '.$l4.'&rez='.$id_rezervare);
+  //header('location:browse.php');
+  //require_once $link;
+}

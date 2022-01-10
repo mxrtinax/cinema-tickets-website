@@ -18,16 +18,21 @@ if (isset($_POST["submit"])) {
     header("location: ../signup.php?error=mailInvalid");
     exit();
   }
-  //if (invalidNume($nume)!==false) {
-    //header("location: ../home.php?error=numeInvalid");
-  //  exit();
-//  }
+  if (specialChars($nume,$prenume,$email)!==false) {
+    header("location: ../signup.php?error=CaractereSpecialeInterzise");
+    exit();
+  }
   //if (invalidPrenume($prenume)!==false) {
   //  header("location: ../home.php?=prenumeInvalid");
   //  exit();
   //}
+  if (pwdStrong($parola)!==false) {
+    header("location: ../signup.php?error=parolaEPreaSlaba");
+    echo "<p style='color:white;'>Parola este prea slaba! Trebuie sa aiba minim 8 caractere, din care o litera mare, una mica, o cifra si un caracter special</p>";
+    exit();  }
   if (pwdMatch($parola,$parolaRepetata)!==false) {
     header("location: ../signup.php?error=paroleleNuCorespund");
+    echo "<h1>Parolele nu corespund!</h1>";
     exit();
   }
 if (mailExists($conn, $email)!==false) {
