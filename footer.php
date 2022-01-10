@@ -7,6 +7,8 @@
   <i class="fa fa fa-twitter w3-hover-opacity  w3-white"></i>
   <i class="fa fa fa-linkedin w3-hover-opacity  w3-white"></i>
   <p class="w3-medium">Powered by <a href="" target="_blank">php</a></p>
+
+
 </footer>
 </body>
 </html>

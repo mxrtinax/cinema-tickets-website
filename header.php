@@ -18,9 +18,9 @@
   <body style="background-color:black;">
     <div class="w3-bar w3-black">
       <a href="home.php" class="w3-bar-item w3-button"><h1 class="w3-text-red" style="text-shadow:1px 1px 0 #444"><b>Cinema Cerce</b></h1></a>
-      <a href="browse.php" class="w3-bar-item w3-button"><h1 class="w3-text-red" style="text-shadow:1px 1px 0 #444"><b>Filme</b></h1></a>
       <?php
         if (isset($_SESSION["email"])) {
+          echo '<a href="browse.php" class="w3-bar-item w3-button"><h1 class="w3-text-red" style="text-shadow:1px 1px 0 #444"><b>Filme</b></h1></a>';
           echo '<a href="includes/logout.inc.php" class="w3-bar-item w3-button w3-right"><h1 class="w3-text-yellow" style="text-shadow:1px 1px 0 #444; margin-right:20px"><b>Log out</b></h1></a>';
           echo '<a href="user.php" class="w3-bar-item w3-button w3-right"><h1 class="w3-text-yellow" style="text-shadow:1px 1px 0 #444; margin-right:20px"><b>User</b></h1></a>';
           if($_SESSION["isAdmin"] == '1')

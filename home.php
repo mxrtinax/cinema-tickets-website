@@ -10,8 +10,18 @@
             <h2>Daca ai cont</h2>
 
             <a href="login.php"><button>Autentificare</button></a>
+            <div style="align-items:center;justify-content:center;">
+              <p style="margin-left:40%;">Contact la:</p>
+              <img src="img/mailto.png" style="margin:auto;" alt="cinemacerce@gmail.com">
+            </div>
+
       </div>
       <div class="column right" style="background-color:rgba(250,250,250,0.0);">
+        <div class="alert" style="padding:20px;background-color:rgb(20,20,20);color:white;padding: 4px;">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+          <h2>Recomandare de film</h2>
+          <?php require_once 'get_next_film.php'; ?>
+        </div>
         <?php
           require_once 'generare_filme.php';
         ?>

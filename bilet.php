@@ -36,11 +36,11 @@
    background-color: #fff;
  }
 
- .seat:nth-of-type(10) {
+ .seat:nth-of-type(<?php require_once 'coloaneSupraDoi.php' ?>) {
    margin-right: 18px;
  }
 
- .seat:nth-last-of-type(10) {
+ .seat:nth-last-of-type(<?php require_once 'coloaneSupraDoi.php' ?>) {
    margin-left: 18px;
  }
 
@@ -127,22 +127,33 @@
 <script>
   function select(id){
     //alert(id);
+    var x = document.getElementsByClassName("seat selected");
     var c1 = document.getElementById(id).className;
     //alert(c1);
     if (c1 == 'seat') {
+      if(x.length<=4){
       document.getElementById(id).className = "seat selected";
+      } else {
+      alert("Puteti selecta maxim 4 locuri!");
+    }
     }
     else if (c1 == "seat selected") {
       document.getElementById(id).className = "seat";
-    }
+      }
   }
 
   function salvare(){
     var proiectie = window.location.href.split(/[=]+/)[1];
     var t = "rezervare.php?proiectie="+proiectie;
     var myElements = document.getElementsByClassName("seat selected");
-    for(var counter = 1; counter < myElements.length; counter++){
-      t = t + "&l" + counter + "=" + myElements[counter].id;
+    for(var counter = 1; counter < 5; counter++){
+      if (myElements[counter]!=undefined) {
+        t = t + "&l" + counter + "=" + myElements[counter].id;
+      }
+      else {
+        t = t + "&l" + counter + "=null";
+
+      }
       //alert(t);
     }
     //alert(proiectie);
